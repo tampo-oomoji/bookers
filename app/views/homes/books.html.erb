@@ -2,6 +2,15 @@
 
 <h1>Books</h1>
 
+<% if @book.errors.any? %>
+<%= @book.errors.count %>errors prohibited this booj form being saved:
+<ul>
+  <% @book.errors.full_messages.each do|message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
   
   
   <table>
@@ -20,6 +29,9 @@
       <td><%= book.title %></td>
       <td><%= book.body %></td>
       <td><%= link_to "show", "/books/#{book.id}" %></td>
+      <td><%= link_to "edit", "/books/#{book.id}/edit" %></td>
+      <td><%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "are you sure?" %></td>
+      
      
       </tr>
     </tbody>
