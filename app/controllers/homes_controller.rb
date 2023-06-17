@@ -8,11 +8,14 @@ class HomesController < ApplicationController
   end
   
   def create
+    flash[:notice] ="successfully"
     @book = Book.new(book_params)
    if @book.save
      redirect_to book_path(@book.id)
    else
-     render :new
+    
+     @books = Book.all
+     render :books
    end
     
     # redirect_to ????
@@ -38,6 +41,7 @@ class HomesController < ApplicationController
   end
   
   def update
+    flash[:notice] ="successfully"
     book = Book.find(params[:id])
     book.update(book_params)
     redirect_to book_path(book.id)
